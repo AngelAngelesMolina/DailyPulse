@@ -26,9 +26,14 @@ kotlin {
     }
     
     sourceSets {
+        iosMain.dependencies {
+
+        }
+
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.ktx)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
