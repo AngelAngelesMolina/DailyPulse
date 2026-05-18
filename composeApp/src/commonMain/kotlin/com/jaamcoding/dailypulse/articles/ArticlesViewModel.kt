@@ -21,12 +21,20 @@ class ArticlesViewModel : BaseViewModel() {
 
     private fun getArticles() {
         scope.launch { //asyncronus code
+            delay(1500)
+            _articlesState.emit(
+                ArticlesState(
+                    isError = "Something went wrong",
+                    isLoading = false
+                )
+            )
+            delay(1500)
             val fetchedArtcles = fetchArticles()
-            delay(500)
             _articlesState.emit(
                 ArticlesState(
                     articles = fetchedArtcles,
-                    isLoading = false
+                    isLoading = false,
+                    isError = null
                 )
             )
         }
@@ -39,28 +47,22 @@ class ArticlesViewModel : BaseViewModel() {
     fun getDummyArticles(): List<Article> {
         return listOf(
             Article(
-                title = "Kotlin Multiplatform Keeps Growing",
-                description = "More companies are adopting Kotlin Multiplatform for shared business logic across Android and iOS.",
-                date = "2026-05-17",
-                imageUrl = "https://picsum.photos/400/200?1"
+                "Stock market today: Live updates - CNBC",
+                "Futures were higher in premarket trading as Wall Street tried to regain its footing.",
+                "2023-11-09",
+                "https://image.cnbcfm.com/api/v1/image/107326078-1698758530118-gettyimages-1765623456-wall26362_igj6ehhp.jpeg?v=1698758587&w=1920&h=1080"
             ),
             Article(
-                title = "Jetpack Compose Reaches New Milestone",
-                description = "Compose continues becoming the preferred UI toolkit for modern Android development.",
-                date = "2026-05-16",
-                imageUrl = "https://picsum.photos/400/200?2"
+                "Best iPhone Deals (2023): Carrier Deals, Unlocked iPhones",
+                "Apple's smartphones rarely go on sale, but if you’re looking to upgrade (or you're gift shopping), here are a few cost-saving options.",
+                "2023-11-09",
+                "https://media.wired.com/photos/622aa5c8cca6acf55fb70b57/191:100/w_1280,c_limit/iPhone-13-Pro-Colors-SOURCE-Apple-Gear.jpg",
             ),
             Article(
-                title = "Coroutines Simplify Async Programming",
-                description = "Developers are increasingly using coroutines for cleaner and more maintainable asynchronous code.",
-                date = "2026-05-15",
-                imageUrl = "https://picsum.photos/400/200?3"
-            ),
-            Article(
-                title = "AI Tools Transform Mobile Development",
-                description = "AI-assisted coding tools are helping developers prototype apps and features much faster.",
-                date = "2026-05-14",
-                imageUrl = "https://picsum.photos/400/200?4"
+                "Samsung details ‘Galaxy AI’ and a feature that can translate phone calls in real time",
+                "In a new blog post, Samsung previewed what it calls “a new era of Galaxy AI” coming to its smartphones and detailed a feature that will use artificial intelligence to translate phone calls in real time.",
+                "2023-11-09",
+                "https://cdn.vox-cdn.com/thumbor/Ocz_QcxUdtaexp1pPTMygaqzbR8=/0x0:2000x1333/1200x628/filters:focal(1000x667:1001x668)/cdn.vox-cdn.com/uploads/chorus_asset/file/24396795/DSC04128_processed.jpg",
             )
         )
     }
