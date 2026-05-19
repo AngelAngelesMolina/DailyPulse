@@ -10,15 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,15 +32,11 @@ import com.jaamcoding.dailypulse.articles.ArticlesViewModel
 
 @Composable
 fun ArticlesScreen(
-    onAboutButtonClick: () -> Unit,
     articlesViewModel: ArticlesViewModel,
 ) {
     val articlesState by articlesViewModel.articlesState.collectAsStateWithLifecycle()
 
     Column() {
-        AppBar(
-            onAboutButtonClick = onAboutButtonClick,
-        )
         if (articlesState.isLoading) {
             Loader()
         }
@@ -57,27 +47,6 @@ fun ArticlesScreen(
             ArticlesListView(articlesState.articles)
         }
     }
-}
-
-@Preview
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppBar(
-    onAboutButtonClick: () -> Unit = {},
-) {
-    TopAppBar(
-        title = {
-            Text("Articles")
-        },
-        actions = {
-            IconButton(onClick = onAboutButtonClick) {
-                Icon(
-                    imageVector = Icons.Outlined.Info,
-                    contentDescription = "About Device button"
-                )
-            }
-        },
-    )
 }
 
 @Composable
@@ -108,14 +77,6 @@ fun ArticleItemView(article: Article) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-//        AsyncImage(
-//            model = article.imageUrl,
-//            contentDescription = article.title,
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .height(200.dp), // Essential: Give it a height
-//            contentScale = ContentScale.Crop // Ensures the image fills the area nicely
-//        )
         SubcomposeAsyncImage(
             model = article.imageUrl,
             contentDescription = null,
