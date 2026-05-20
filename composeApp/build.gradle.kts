@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     id("co.touchlab.skie") version "0.10.12" //MOST UPDATED VERSION
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
