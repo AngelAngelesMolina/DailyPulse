@@ -1,10 +1,13 @@
 package com.jaamcoding.dailypulse.articles
 
 import com.jaamcoding.dailypulse.BaseViewModel
-import kotlinx.coroutines.delay
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 
 class ArticlesViewModel : BaseViewModel() {
 
@@ -14,22 +17,28 @@ class ArticlesViewModel : BaseViewModel() {
         )
     )
     val articlesState: StateFlow<ArticlesState> get() = _articlesState
+    val useCase: ArticlesUseCase
 
     init {
+        val httpClient = HttpClient {
+            install(ContentNegotiation) {
+                json(
+                    Json {
+                        prettyPrint = true
+                        isLenient = true
+                        ignoreUnknownKeys = true
+                    }
+                )
+            }
+        }
+        useCase = ArticlesUseCase(ArticlesService(httpClient))
         getArticles()
     }
 
     private fun getArticles() {
         scope.launch { //asyncronus code
-            delay(1500)
-            _articlesState.emit(
-                ArticlesState(
-                    isError = "Something went wrong",
-                    isLoading = false
-                )
-            )
-            delay(1500)
-            val fetchedArtcles = fetchArticles()
+
+            val fetchedArtcles = useCase.getArticles()
             _articlesState.emit(
                 ArticlesState(
                     articles = fetchedArtcles,

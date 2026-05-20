@@ -63,7 +63,7 @@ fun ArticlesListView(articles: List<Article>) {
 fun ArticleItemViewPreview() {
     val article = Article(
         title = "Kotlin Multiplatform Keeps Growing",
-        description = "More companies are adopting Kotlin Multiplatform for shared business logic across Android and iOS.",
+        desc = "More companies are adopting Kotlin Multiplatform for shared business logic across Android and iOS.",
         date = "2026-05-17",
         imageUrl = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop"
     )
@@ -97,7 +97,7 @@ fun ArticleItemView(article: Article) {
             style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 22.sp)
         )
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = article.description)
+        Text(text = article.desc)
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = article.date,
