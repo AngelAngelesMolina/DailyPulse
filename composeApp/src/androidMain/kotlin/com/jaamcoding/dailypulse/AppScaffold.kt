@@ -1,13 +1,11 @@
 package com.jaamcoding.dailypulse
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,7 +18,7 @@ import com.jaamcoding.dailypulse.screens.ArticlesScreen
 import com.jaamcoding.dailypulse.screens.Screens
 
 @Composable
-fun AppScaffold(articlesViewModel: ArticlesViewModel) {
+fun AppScaffold() {
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route
@@ -42,8 +40,7 @@ fun AppScaffold(articlesViewModel: ArticlesViewModel) {
             navController = navController,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
-            articlesViewModel = articlesViewModel
+                .padding(paddingValues)
         )
     }
 }
@@ -51,8 +48,7 @@ fun AppScaffold(articlesViewModel: ArticlesViewModel) {
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    articlesViewModel: ArticlesViewModel
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
@@ -60,9 +56,7 @@ fun AppNavHost(
         modifier = modifier,
     ) {
         composable(Screens.ARTICLES.route) {
-            ArticlesScreen(
-                articlesViewModel,
-            )
+            ArticlesScreen()
         }
         composable(Screens.ABOUT_DEVICE.route) {
             AboutScreen()

@@ -39,6 +39,8 @@ kotlin {
             implementation(libs.ktor.client.android)
             implementation(libs.material.icons.extended)
             implementation(libs.navigation.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.compose)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -57,6 +59,8 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
 
             implementation(libs.kotlinx.datetime)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose.viewmodel)
 
         }
         commonTest.dependencies {

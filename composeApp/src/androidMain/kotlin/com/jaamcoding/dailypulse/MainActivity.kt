@@ -16,9 +16,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         Platform().logSystemInfo()
-        val articlesVm: ArticlesViewModel by viewModels()
         setContent {
-            AppScaffold(articlesViewModel = articlesVm)
+            AppScaffold()
         }
     }
 }

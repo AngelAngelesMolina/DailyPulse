@@ -29,10 +29,11 @@ import coil3.compose.SubcomposeAsyncImage
 import coil3.compose.SubcomposeAsyncImageContent
 import com.jaamcoding.dailypulse.articles.Article
 import com.jaamcoding.dailypulse.articles.ArticlesViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun ArticlesScreen(
-    articlesViewModel: ArticlesViewModel,
+    articlesViewModel: ArticlesViewModel = koinViewModel<ArticlesViewModel>(),
 ) {
     val articlesState by articlesViewModel.articlesState.collectAsStateWithLifecycle()
 
