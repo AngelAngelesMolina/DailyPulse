@@ -13,7 +13,8 @@ fun initKoin() {
         modules(modules)
     }
 
-    class ArticlesInjector : KoinComponent {
-        val articlesVm: ArticlesViewModel by inject()
-    }
+}
+
+class ArticlesInjector : KoinComponent {
+    val articlesVm: ArticlesViewModel by inject()
 }
