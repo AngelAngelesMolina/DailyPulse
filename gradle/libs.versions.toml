@@ -22,7 +22,7 @@ androidx-navigation = "2.9.2"
 kotlinxDatetime = "0.8.0"
 kotlin-serialization = "2.3.21"
 koin = "4.0.2"
-sqlDelight = "2.0.0"
+sqlDelight = "2.3.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
