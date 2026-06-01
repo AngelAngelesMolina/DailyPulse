@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     id("co.touchlab.skie") version "0.10.12" //MOST UPDATED VERSION
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -103,3 +104,10 @@ dependencies {
     debugImplementation(libs.compose.uiTooling)
 }
 
+sqldelight {
+    databases {
+        create(name = "DailyPulseDatabase") {
+            packageName.set("jaam.coding.dailypulse.db")
+        }
+    }
+}
