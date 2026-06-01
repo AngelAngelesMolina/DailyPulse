@@ -30,6 +30,7 @@ kotlin {
     sourceSets {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sql.native.driver)
         }
 
         androidMain.dependencies {
@@ -41,6 +42,7 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.compose)
+            implementation(libs.sql.android.driver)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -61,6 +63,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.koin.compose.viewmodel)
+            implementation(libs.sql.coroutines.extensions)
 
         }
         commonTest.dependencies {
