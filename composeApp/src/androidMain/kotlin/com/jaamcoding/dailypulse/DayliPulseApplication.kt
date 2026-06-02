@@ -1,6 +1,7 @@
 package com.jaamcoding.dailypulse
 
 import android.app.Application
+import com.jaamcoding.dailypulse.di.databaseModule
 import com.jaamcoding.dailypulse.di.sharedKoinModule
 import com.jaamcoding.dailypulse.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +15,7 @@ class DayliPulseApplication : Application() {
     }
 
     private fun initKoin() {
-        val modules = sharedKoinModule + viewModelsModule
+        val modules = sharedKoinModule + viewModelsModule + databaseModule
         startKoin {
             androidContext(this@DayliPulseApplication)
             modules(modules)
