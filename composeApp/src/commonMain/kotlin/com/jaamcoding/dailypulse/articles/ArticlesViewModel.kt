@@ -4,6 +4,7 @@ import com.jaamcoding.dailypulse.BaseViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -25,16 +26,32 @@ class ArticlesViewModel(
     }
 
     fun getArticles(forceFetch: Boolean = false) {
-        scope.launch { //asyncronus code
-
-            val fetchedArtcles = useCase.getArticles(forceFetch)
-            _articlesState.emit(
-                ArticlesState(
-                    articles = fetchedArtcles,
-                    isLoading = false,
-                    isError = null
+        scope.launch {
+            try {
+                _articlesState.emit(
+                    ArticlesState(
+                        isLoading = true,
+                        articles = _articlesState.value.articles,
+                    )
                 )
-            )
+                val fetchedArticles = useCase.getArticles(forceFetch)
+
+                _articlesState.emit(
+                    ArticlesState(
+                        articles = fetchedArticles,
+                        isLoading = false,
+                        isError = null
+                    )
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _articlesState.emit(
+                    ArticlesState(
+                        isLoading = false,
+                        isError = e.message ?: "Unknown error"
+                    )
+                )
+            }
         }
     }
 
