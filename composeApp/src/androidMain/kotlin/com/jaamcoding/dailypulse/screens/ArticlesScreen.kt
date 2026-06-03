@@ -13,6 +13,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,23 +40,34 @@ fun ArticlesScreen(
     val articlesState by articlesViewModel.articlesState.collectAsStateWithLifecycle()
 
     Column() {
-        if (articlesState.isLoading) {
-            Loader()
-        }
         if (articlesState.isError != null) {
             ErrorMessage(articlesState.isError!!)
         }
         if (articlesState.articles.isNotEmpty()) {
-            ArticlesListView(articlesState.articles)
+            ArticlesListView(articlesViewModel)
         }
     }
 }
 
 @Composable
-fun ArticlesListView(articles: List<Article>) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        items(articles) { article ->
-            ArticleItemView(article = article)
+fun ArticlesListView(vm: ArticlesViewModel) {
+    val state by vm.articlesState.collectAsStateWithLifecycle()
+
+    val pullToRefreshState = rememberPullToRefreshState()
+
+    PullToRefreshBox(
+        state = pullToRefreshState,
+        isRefreshing = state.isLoading,
+        onRefresh = {
+            vm.getArticles(true)
+        }
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(state.articles) { article ->
+                ArticleItemView(article)
+            }
         }
     }
 }
@@ -110,19 +123,6 @@ fun ArticleItemView(article: Article) {
 }
 
 @Composable
-fun Loader() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.width(64.dp), color = MaterialTheme.colorScheme.surfaceVariant,
-            trackColor = MaterialTheme.colorScheme.secondary
-        )
-    }
-}
-
-@Composable
 fun ErrorMessage(message: String) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -134,4 +134,16 @@ fun ErrorMessage(message: String) {
         )
     }
 
+}
+@Composable
+fun Loader() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.width(64.dp), color = MaterialTheme.colorScheme.surfaceVariant,
+            trackColor = MaterialTheme.colorScheme.secondary
+        )
+    }
 }

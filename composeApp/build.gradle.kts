@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     id("co.touchlab.skie") version "0.10.12" //MOST UPDATED VERSION
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -30,6 +31,7 @@ kotlin {
     sourceSets {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sql.native.driver)
         }
 
         androidMain.dependencies {
@@ -41,6 +43,7 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.compose)
+            implementation(libs.sql.android.driver)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -61,6 +64,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.koin.compose.viewmodel)
+            implementation(libs.sql.coroutines.extensions)
 
         }
         commonTest.dependencies {
@@ -100,3 +104,10 @@ dependencies {
     debugImplementation(libs.compose.uiTooling)
 }
 
+sqldelight {
+    databases {
+        create(name = "DailyPulseDatabase") {
+            packageName.set("jaam.coding.dailypulse.db")
+        }
+    }
+}

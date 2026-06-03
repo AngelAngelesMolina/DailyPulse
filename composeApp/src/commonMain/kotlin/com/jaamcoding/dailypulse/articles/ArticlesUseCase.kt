@@ -9,11 +9,11 @@ import kotlin.time.Clock
 import kotlin.time.Instant
 
 class ArticlesUseCase(
-    private val service: ArticlesService
+    private val repository: ArticlesRepository
 ) {
 
-    suspend fun getArticles(): List<Article> {
-        val articlesRaw = service.getArticles()
+    suspend fun getArticles(forceFetch: Boolean): List<Article> {
+        val articlesRaw = repository.getArticles(forceFetch)
         return mapArticles(articlesRaw)
     }
 
