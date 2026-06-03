@@ -5,17 +5,24 @@ class ArticlesRepository(
     private val service: ArticlesService,
 ) {
 
-    suspend fun getArticles(): List<ArticleRaw> {
+    suspend fun getArticles(forceFetch: Boolean): List<ArticleRaw> {
+        if (forceFetch) {
+            dataSource.clearArticles()
+            return fetchArticles()
+        }
         val articlesDb = dataSource.getAllArticles()
         println("articlesDb: ${articlesDb.size}")
+
         if (articlesDb.isEmpty()) {
-            val fetchArticles = service.getArticles()
-            dataSource.insertArticles(fetchArticles)
-            return fetchArticles
-        } else {
-            return articlesDb
+            fetchArticles()
         }
+        return articlesDb
     }
 
+    private suspend fun fetchArticles(): List<ArticleRaw> {
+        val fetchArticles = service.getArticles()
+        dataSource.insertArticles(fetchArticles)
+        return fetchArticles
+    }
 
 }
