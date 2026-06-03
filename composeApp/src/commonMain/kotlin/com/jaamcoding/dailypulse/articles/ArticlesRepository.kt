@@ -7,6 +7,7 @@ class ArticlesRepository(
 
     suspend fun getArticles(forceFetch: Boolean): List<ArticleRaw> {
         if (forceFetch) {
+            println("articlesDb: force called!")
             dataSource.clearArticles()
             return fetchArticles()
         }
@@ -14,7 +15,7 @@ class ArticlesRepository(
         println("articlesDb: ${articlesDb.size}")
 
         if (articlesDb.isEmpty()) {
-            fetchArticles()
+            return fetchArticles()
         }
         return articlesDb
     }
