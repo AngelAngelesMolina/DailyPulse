@@ -17,5 +17,6 @@ class ArticlesService(
                 .body()
         return response.articles
     }
+
 }
 
