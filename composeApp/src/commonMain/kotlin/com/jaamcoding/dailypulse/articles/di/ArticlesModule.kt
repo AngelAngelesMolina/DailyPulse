@@ -1,10 +1,10 @@
 package com.jaamcoding.dailypulse.articles.di
 
-import com.jaamcoding.dailypulse.articles.ArticlesDataSource
-import com.jaamcoding.dailypulse.articles.ArticlesRepository
-import com.jaamcoding.dailypulse.articles.ArticlesService
-import com.jaamcoding.dailypulse.articles.ArticlesUseCase
-import com.jaamcoding.dailypulse.articles.ArticlesViewModel
+import com.jaamcoding.dailypulse.articles.data.ArticlesDataSource
+import com.jaamcoding.dailypulse.articles.data.ArticlesRepository
+import com.jaamcoding.dailypulse.articles.data.ArticlesService
+import com.jaamcoding.dailypulse.articles.domain.ArticlesUseCase
+import com.jaamcoding.dailypulse.articles.presentation.ArticlesViewModel
 import org.koin.dsl.module
 
 

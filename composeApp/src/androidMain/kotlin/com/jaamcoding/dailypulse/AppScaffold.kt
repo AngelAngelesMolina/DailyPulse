@@ -11,7 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.jaamcoding.dailypulse.articles.ArticlesViewModel
+import com.jaamcoding.dailypulse.articles.presentation.ArticlesViewModel
 import com.jaamcoding.dailypulse.components.AppTopBar
 import com.jaamcoding.dailypulse.screens.AboutScreen
 import com.jaamcoding.dailypulse.screens.ArticlesScreen

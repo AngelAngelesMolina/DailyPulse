@@ -1,4 +1,4 @@
-package com.jaamcoding.dailypulse.articles
+package com.jaamcoding.dailypulse.articles.domain
 
 data class Article(
     val title: String,

@@ -1,4 +1,4 @@
-package com.jaamcoding.dailypulse.articles
+package com.jaamcoding.dailypulse.articles.data
 
 import jaam.coding.dailypulse.db.DailyPulseDatabase
 

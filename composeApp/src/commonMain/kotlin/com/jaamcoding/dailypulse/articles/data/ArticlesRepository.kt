@@ -1,4 +1,4 @@
-package com.jaamcoding.dailypulse.articles
+package com.jaamcoding.dailypulse.articles.data
 
 class ArticlesRepository(
     private val dataSource: ArticlesDataSource,

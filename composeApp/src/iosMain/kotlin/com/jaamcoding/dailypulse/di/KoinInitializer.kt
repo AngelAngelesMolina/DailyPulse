@@ -1,6 +1,6 @@
 package com.jaamcoding.dailypulse.di
 
-import com.jaamcoding.dailypulse.articles.ArticlesViewModel
+import com.jaamcoding.dailypulse.articles.presentation.ArticlesViewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
