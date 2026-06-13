@@ -1,5 +1,7 @@
-package com.jaamcoding.dailypulse.articles
+package com.jaamcoding.dailypulse.articles.domain
 
+import com.jaamcoding.dailypulse.articles.data.ArticleRaw
+import com.jaamcoding.dailypulse.articles.data.ArticlesRepository
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
 import kotlinx.datetime.toLocalDateTime
@@ -29,9 +31,9 @@ class ArticlesUseCase(
         }
 
     private fun getDaysAgoString(date: String): String {
-        val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
+        val today = Clock.System.todayIn(TimeZone.Companion.currentSystemDefault())
         val days = today.daysUntil(
-            Instant.parse(date).toLocalDateTime(TimeZone.currentSystemDefault()).date
+            Instant.Companion.parse(date).toLocalDateTime(TimeZone.Companion.currentSystemDefault()).date
         )
 
         val result = when {

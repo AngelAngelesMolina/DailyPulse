@@ -1,35 +1,63 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# DailyPulse
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+DailyPulse is a modern news application built with **Kotlin Multiplatform (KMP)** and **Compose Multiplatform**, designed to provide a seamless news reading experience across Android and iOS.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## 🚀 Features
 
-### Build and Run Android Application
+- **Multiplatform Support**: Shared business logic and UI across Android and iOS using Kotlin Multiplatform.
+- **News Feed**: Browse the latest articles with detailed information including titles, descriptions, and images.
+- **Offline First**: Cached articles using **SQLDelight** for a smooth experience even without an active internet connection.
+- **Modern UI**: Built entirely with **Compose Multiplatform** and **Material 3**.
+- **Clean Architecture**: Organized into `domain`, `data`, and `presentation` layers for maintainability and scalability.
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+## 📸 Screenshots
 
-### Build and Run iOS Application
+| Articles | Sources | About Device |
+| :---: | :---: | :---: |
+| ![Articles Screen](https://github.com/user-attachments/assets/936460ed-034e-4bce-8de0-3fb270b7115a) | ![Sources Screen](https://github.com/user-attachments/assets/ddc48906-f0f7-414e-a8db-49b978d22803) | ![About Device Screen](https://github.com/user-attachments/assets/5ee62e0c-f280-4ee1-932e-9108c6ccd397) |
 
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
 
----
+## 🛠️ Tech Stack
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+- **UI**: [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
+- **Networking**: [Ktor](https://ktor.io/)
+- **Dependency Injection**: [Koin](https://insert-koin.io/)
+- **Database**: [SQLDelight](https://cashapp.github.io/sqldelight/)
+- **Image Loading**: [Coil3](https://coil-kt.github.io/coil/)
+- **Concurrency**: [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
+- **Serialization**: [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)
+- **Date/Time**: [Kotlinx Datetime](https://github.com/Kotlin/kotlinx-datetime)
+
+## 📁 Project Structure
+
+The project follows a standard Kotlin Multiplatform structure:
+
+- `composeApp/src/commonMain`: Contains shared Compose UI, ViewModels, Use Cases, and Repository interfaces.
+- `composeApp/src/androidMain`: Android-specific configurations and platform implementations (e.g., Database drivers).
+- `composeApp/src/iosMain`: iOS-specific platform implementations.
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Android Studio Ladybug or later.
+- Xcode (for running the iOS application).
+- JDK 17+.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/DailyPulse.git
+   ```
+2. Open the project in Android Studio.
+3. Sync project with Gradle files.
+
+### Running the App
+
+- **Android**: Select `composeApp` and run on an emulator or physical device.
+- **iOS**: Run the `iosApp` target from Android Studio (using the KMP plugin) or open the `iosApp` folder in Xcode.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

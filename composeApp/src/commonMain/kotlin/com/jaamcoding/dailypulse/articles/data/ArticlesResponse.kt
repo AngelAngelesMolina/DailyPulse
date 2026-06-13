@@ -1,4 +1,4 @@
-package com.jaamcoding.dailypulse.articles
+package com.jaamcoding.dailypulse.articles.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

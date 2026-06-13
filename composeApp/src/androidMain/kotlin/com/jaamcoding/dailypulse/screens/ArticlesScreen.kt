@@ -29,8 +29,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.SubcomposeAsyncImage
 import coil3.compose.SubcomposeAsyncImageContent
-import com.jaamcoding.dailypulse.articles.Article
-import com.jaamcoding.dailypulse.articles.ArticlesViewModel
+import com.jaamcoding.dailypulse.articles.domain.Article
+import com.jaamcoding.dailypulse.articles.presentation.ArticlesViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

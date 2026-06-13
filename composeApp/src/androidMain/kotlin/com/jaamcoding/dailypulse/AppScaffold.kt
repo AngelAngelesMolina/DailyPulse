@@ -11,11 +11,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.jaamcoding.dailypulse.articles.ArticlesViewModel
+import com.jaamcoding.dailypulse.articles.presentation.ArticlesViewModel
 import com.jaamcoding.dailypulse.components.AppTopBar
 import com.jaamcoding.dailypulse.screens.AboutScreen
 import com.jaamcoding.dailypulse.screens.ArticlesScreen
 import com.jaamcoding.dailypulse.screens.Screens
+import com.jaamcoding.dailypulse.screens.SourcesScreen
 
 @Composable
 fun AppScaffold() {
@@ -31,6 +32,9 @@ fun AppScaffold() {
                 },
                 onAboutButtonClick = {
                     navController.navigate(Screens.ABOUT_DEVICE.route)
+                },
+                onSourcesClick = {
+                    navController.navigate(Screens.SOURCES.route)
                 }
             )
         }
@@ -60,6 +64,9 @@ fun AppNavHost(
         }
         composable(Screens.ABOUT_DEVICE.route) {
             AboutScreen()
+        }
+        composable(Screens.SOURCES.route) {
+            SourcesScreen()
         }
     }
 }
