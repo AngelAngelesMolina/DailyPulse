@@ -1,6 +1,6 @@
 package com.jaamcoding.dailypulse.articles.data
 
-import com.jaamcoding.dailypulse.Constants.API_KEY
+import com.jaamcoding.dailypulse.AppSecrets
 import com.jaamcoding.dailypulse.Constants.BASE_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -15,7 +15,7 @@ class ArticlesService(
     private val apiKey = "b2139932c19c4656b80493696042a2c9"
     suspend fun getArticles(): List<ArticleRaw> {
         val response: ArticlesResponse =
-            client.get("$BASE_URL/top-headlines?country=$country&category=$category&apiKey=$API_KEY")
+            client.get("$BASE_URL/top-headlines?country=$country&category=$category&apiKey=${AppSecrets.NEWS_API_KEY}")
                 .body()
         return response.articles
     }

@@ -1,5 +1,6 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.io.File
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -10,6 +11,26 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqlDelight)
 }
+
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
+}
+
+val newsApiKey = localProperties.getProperty("NEWS_API_KEY")
+    ?: error("NEWS_API_KEY not found in local.properties")
+
+val generatedDir = layout.buildDirectory.dir("generated/config").get().asFile
+generatedDir.mkdirs()
+
+File(generatedDir, "AppSecrets.kt").writeText(
+    """
+    package com.jaamcoding.dailypulse
+
+    object AppSecrets {
+        const val NEWS_API_KEY = "$newsApiKey"
+    }
+    """.trimIndent()
+)
 
 kotlin {
     androidTarget {
@@ -29,22 +50,10 @@ kotlin {
     }
 
     sourceSets {
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
-            implementation(libs.sql.native.driver)
+        commonMain {
+            kotlin.srcDir(generatedDir)
         }
 
-        androidMain.dependencies {
-            implementation(libs.compose.uiToolingPreview)
-            implementation(libs.androidx.activity.compose)
-            implementation(libs.androidx.lifecycle.viewmodel.ktx)
-            implementation(libs.ktor.client.android)
-            implementation(libs.material.icons.extended)
-            implementation(libs.navigation.compose)
-            implementation(libs.koin.android)
-            implementation(libs.koin.compose)
-            implementation(libs.sql.android.driver)
-        }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
@@ -67,8 +76,26 @@ kotlin {
             implementation(libs.sql.coroutines.extensions)
 
         }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+            implementation(libs.sql.native.driver)
+        }
+
+        androidMain.dependencies {
+            implementation(libs.compose.uiToolingPreview)
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.ktx)
+            implementation(libs.ktor.client.android)
+            implementation(libs.material.icons.extended)
+            implementation(libs.navigation.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.compose)
+            implementation(libs.sql.android.driver)
         }
     }
 }

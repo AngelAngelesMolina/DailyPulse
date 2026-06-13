@@ -1,6 +1,6 @@
 package com.jaamcoding.dailypulse.sources.data
 
-import com.jaamcoding.dailypulse.Constants.API_KEY
+import com.jaamcoding.dailypulse.AppSecrets
 import com.jaamcoding.dailypulse.Constants.BASE_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -12,7 +12,7 @@ class SourcesService(
 
     suspend fun getSources(): List<SourceRaw> {
         val response: SourceResponse =
-            client.get("$BASE_URL/top-headlines/sources?apiKey=$API_KEY")
+            client.get("$BASE_URL/top-headlines/sources?apiKey=$${AppSecrets.NEWS_API_KEY}")
                 .body()
         return response.sources
     }
