@@ -1,6 +1,7 @@
 package com.jaamcoding.dailypulse.di
 
 import com.jaamcoding.dailypulse.articles.presentation.ArticlesViewModel
+import com.jaamcoding.dailypulse.sources.presentation.SourcesViewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
@@ -17,4 +18,8 @@ fun initKoin() {
 
 class ArticlesInjector : KoinComponent {
     val articlesVm: ArticlesViewModel by inject()
+}
+
+class SourcesInjector : KoinComponent {
+    val sourcesViewModel: SourcesViewModel by inject()
 }
