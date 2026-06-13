@@ -14,7 +14,8 @@ DailyPulse is a modern news application built with **Kotlin Multiplatform (KMP)*
 
 | Articles | Sources | About Device |
 | :---: | :---: | :---: |
-| ![Articles Screen](docs/screenshots/articles.png) | ![Sources Screen](docs/screenshots/sources.png) | ![About Device Screen](docs/screenshots/about.png) |
+| ![Articles Screen](https://github.com/user-attachments/assets/936460ed-034e-4bce-8de0-3fb270b7115a) | ![Sources Screen](https://github.com/user-attachments/assets/ddc48906-f0f7-414e-a8db-49b978d22803) | ![About Device Screen](https://github.com/user-attachments/assets/5ee62e0c-f280-4ee1-932e-9108c6ccd397) |
+
 
 ## 🛠️ Tech Stack
 
