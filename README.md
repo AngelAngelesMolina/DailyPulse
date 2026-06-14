@@ -1,13 +1,13 @@
 # DailyPulse
 
-DailyPulse is a modern news application built with **Kotlin Multiplatform (KMP)** and **Compose Multiplatform**, designed to provide a seamless news reading experience across Android and iOS.
+DailyPulse is a modern news application built with **Kotlin Multiplatform (KMP)**, designed to provide a seamless news reading experience across Android and iOS.
 
 ## 🚀 Features
 
 - **Multiplatform Support**: Shared business logic and UI across Android and iOS using Kotlin Multiplatform.
 - **News Feed**: Browse the latest articles with detailed information including titles, descriptions, and images.
 - **Offline First**: Cached articles using **SQLDelight** for a smooth experience even without an active internet connection.
-- **Modern UI**: Built entirely with **Compose Multiplatform** and **Material 3**.
+- **Modern UI**: Built entirely with **Jetpack compose** and **Swift ui**.
 - **Clean Architecture**: Organized into `domain`, `data`, and `presentation` layers for maintainability and scalability.
 
 ## 📸 Screenshots
@@ -19,7 +19,7 @@ DailyPulse is a modern news application built with **Kotlin Multiplatform (KMP)*
 
 ## 🛠️ Tech Stack
 
-- **UI**: [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
+- **UI**: [Jetpack compose & Swift UI](https://www.jetbrains.com/lp/compose-multiplatform/)
 - **Networking**: [Ktor](https://ktor.io/)
 - **Dependency Injection**: [Koin](https://insert-koin.io/)
 - **Database**: [SQLDelight](https://cashapp.github.io/sqldelight/)
