@@ -12,7 +12,7 @@ class SourcesService(
 
     suspend fun getSources(): List<SourceRaw> {
         val response: SourceResponse =
-            client.get("$BASE_URL/top-headlines/sources?apiKey=$${AppSecrets.NEWS_API_KEY}")
+            client.get("$BASE_URL/top-headlines/sources?apiKey=${AppSecrets.NEWS_API_KEY}")
                 .body()
         return response.sources
     }
